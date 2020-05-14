@@ -1,8 +1,7 @@
 import { Context } from "https://deno.land/x/oak/mod.ts";
-
 declare module "https://deno.land/x/oak/mod.ts" {
   interface Request {
-    json: Record<string, string>,
+    json: object,
   }
 }
 
@@ -11,8 +10,8 @@ export function jsonParser(options: any = null) {
     // if request has body
     if (ctx.request.hasBody) {
       try {
-        let jsonObj = await ctx.request.body({ contentTypes: { json: [] } })
-        ctx.request.json = <Record<string, string>>jsonObj.value
+        let jsonBody= await ctx.request.body({ contentTypes: { json: [] } })
+        ctx.request.json = jsonBody.value
         next()
       }
       catch (e) {
