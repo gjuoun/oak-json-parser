@@ -1,0 +1,1 @@
+export {jsonParser} from './lib/json.ts'
