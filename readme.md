@@ -15,7 +15,7 @@ const app = new Application();
 app.use(jsonParser())
 
 app.use(async (ctx) => {
-  ctx.response.json // will become available
+  ctx.request.json // will become available
 });
 
 await app.listen({ port: 8000 });
